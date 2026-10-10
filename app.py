@@ -90,8 +90,7 @@ elif submit:
         st.session_state.history.append(guess_int)
 
         if st.session_state.attempts % 2 == 0:
-            # secret = str(st.session_state.secret)
-            secret = st(st.session_state.secret)
+            secret = str(st.session_state.secret)
         else:
             secret = st.session_state.secret
 
