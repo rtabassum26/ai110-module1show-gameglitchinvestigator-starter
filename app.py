@@ -4,6 +4,8 @@ import streamlit as st
 from logic_utils import get_range_for_difficulty, parse_guess, check_guess, update_score
 
 # Got rid of the methods defined within app.py
+# FIX: Refactored game logic into logic_utils.py with AI assistance.
+# Reviewed the changes to preserve the original Streamlit interface.
 
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 st.title("🎮 Game Glitch Investigator")
@@ -44,6 +46,9 @@ if "history" not in st.session_state:
     st.session_state.history = []
 
 st.subheader("Make a guess")
+
+# FIX: Updated the attempt counter and debug panel after processing guesses.
+# Used Claude Code to investigate the delayed UI updates.
 
 info_box = st.empty()
 debug_box = st.expander("Developer Debug Info")

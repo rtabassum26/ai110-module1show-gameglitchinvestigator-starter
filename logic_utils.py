@@ -17,6 +17,7 @@ def parse_guess(raw: str):
 
 # FIXME (resolved): previously, the guessing logic
 # produced incorrect hints die to inconsistent data types.
+# Verified the behavior using pytest.
 def check_guess(guess, secret):
     guess, secret = int(guess), int(secret)
     if guess == secret:
