@@ -1,54 +1,51 @@
+
 # 🎮 Game Glitch Investigator: The Impossible Guesser
 
 ## 🚨 The Situation
 
-You asked an AI to build a simple "Number Guessing Game" using Streamlit.
-It wrote the code, ran away, and now the game is unplayable. 
-
-- You can't win.
-- The hints lie to you.
-- The secret number seems to have commitment issues.
+An AI-generated number guessing game built with Streamlit contained several bugs that affected gameplay. The objective of this project was to identify these issues, fix the underlying logic, and verify the changes through manual and automated testing.
 
 ## 🛠️ Setup
 
 1. Install dependencies: `pip install -r requirements.txt`
-2. Run the broken app: `python -m streamlit run app.py`
+2. Run the application: `python -m streamlit run app.py`
 
 ## 🕵️‍♂️ Your Mission
 
-1. **Play the game.** Open the "Developer Debug Info" tab in the app to see the secret number. Try to win.
-2. **Find the State Bug.** Why does the secret number change every time you click "Submit"? Ask ChatGPT: *"How do I keep a variable from resetting in Streamlit when I click a button?"*
-3. **Fix the Logic.** The hints ("Higher/Lower") are wrong. Fix them.
-4. **Refactor & Test.** - Move the logic into `logic_utils.py`.
-   - Run `pytest` in your terminal.
-   - Keep fixing until all tests pass!
+1. **Play the game.** Use the Developer Debug Info section to observe the secret number, attempts, score, and guess history.
+2. **Identify the bugs.** Investigate incorrect hints, inconsistent scoring, problems with starting a new game, and outdated interface information.
+3. **Fix the logic.** Correct the guessing and scoring behavior while preserving the original interface.
+4. **Refactor & Test.** Move the game logic into `logic_utils.py` and use pytest to verify the fixes.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] **Game purpose:** The game allows players to guess a randomly generated number within a limited number of attempts. Players receive hints after each guess and earn a score based on their performance.
+
+- [x] **Bugs identified:** The original game displayed incorrect remaining attempts, reversed the high/low hints, and prevented players from properly starting another game after winning. The input field also retained the previous guess, and the Developer Debug Info section did not immediately display the latest guess.
+
+- [x] **Fixes applied:** I corrected the guessing and scoring logic, fixed the new game functionality, and cleared the input field whenever a new game starts. I also updated the attempt counter and debug information to reflect the current game state. The core game logic was moved into `logic_utils.py` to separate it from the Streamlit interface.
 
 ## 📸 Demo Walkthrough
 
-Describe your fixed game in numbered steps so a reader can follow along without watching a video:
+The following example assumes the secret number is 50 on Normal difficulty.
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. The player starts a new game with 8 attempts available.
+2. The player enters 40. The game displays "Too Low" and deducts 5 points.
+3. The player enters 60. The game displays "Too High" and deducts another 5 points.
+4. The player enters 50. The game displays "Correct!" and awards points based on the number of attempts.
+5. The game displays the winning message and final score.
+6. The player clicks "New Game" to reset the attempts, guess history, and input field.
 
-**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
+The Developer Debug Info section displays the secret number, attempts, score, selected difficulty, and guess history.
 
 ## 🧪 Test Results
 
-```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+All 9 pytest tests passed after correcting the AI-generated test assertions to match the return values of `check_guess()`.
+
+```text
+9 passed
 ```
 
 ## 🚀 Stretch Features
 
-- [ ] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
+- [ ] Challenge 4: Enhanced UI (not completed)
